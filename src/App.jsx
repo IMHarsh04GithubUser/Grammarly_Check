@@ -10,7 +10,7 @@ const App = () => {
     <div>
       {/* Wrap the app with GrammarProvider to provide context */ }
       <GrammarProvider>
-        <div className="min-h-screen bg-gradient-to-b from-slate-50 to-slate-100 p-6 space-y-6">
+        <div className="min-h-screen bg-gradient-to-b from-slate-300 to-slate-50 p-6 space-y-6">
           <Header />
           <div className="grid md:grid-cols-2 gap-6">
             <Editor />
