@@ -8,6 +8,7 @@ import Footer from "./components/Footer";
 const App = () => {
   return (
     <div>
+      {/* Wrap the app with GrammarProvider to provide context */ }
       <GrammarProvider>
         <div className="min-h-screen bg-gradient-to-b from-slate-50 to-slate-100 p-6 space-y-6">
           <Header />

@@ -2,7 +2,7 @@ import React, { createContext, useContext, useState, useMemo, useEffect } from "
 
 const GrammarContext = createContext();
 
-
+{/* Function to apply text replacements based on matches */ }
 function applyReplacements(base, replacements) {
   const sorted = [...replacements].sort((a, b) => a.start - b.start);
   let out = "";
@@ -15,6 +15,7 @@ function applyReplacements(base, replacements) {
   return out;
 }
 
+{/* Function to normalize matches by removing overlaps and sorting */ }
 function normalizeMatches(matches) {
   const sorted = [...matches].sort((a, b) => a.offset - b.offset || b.length - a.length);
   const result = [];
@@ -28,6 +29,7 @@ function normalizeMatches(matches) {
   return result;
 }
 
+{/* Function to check text with LanguageTool API */ }
 async function checkWithLanguageTool({ text, language = "en-US" }) {
   const params = new URLSearchParams();
   params.set("text", text);
@@ -43,6 +45,7 @@ async function checkWithLanguageTool({ text, language = "en-US" }) {
   return data.matches || [];
 }
 
+{/* GrammarProvider to manage state and provide context to components */ }
 export function GrammarProvider({ children }) {
   const [text, setText] = useState("");
   const [language, setLanguage] = useState("en-US");
@@ -54,6 +57,7 @@ export function GrammarProvider({ children }) {
 
   const normalized = useMemo(() => normalizeMatches(matches), [matches]);
 
+  {/* Effect to update auto-corrected text when text or normalized matches change */ }
   useEffect(() => {
     if (!normalized.length) {
       setAutoCorrected("");
@@ -67,6 +71,7 @@ export function GrammarProvider({ children }) {
     setAutoCorrected(applyReplacements(text, repl));
   }, [text, normalized]);
 
+  {/* Function to handle grammar check */ }
   const handleCheck = async () => {
     setError("");
     setLoading(true);
@@ -82,6 +87,7 @@ export function GrammarProvider({ children }) {
     }
   };
 
+  {/* Function to apply all suggestions */ }
   const handleApplyAll = () => {
     if (!autoCorrected) return;
     setText(autoCorrected);
@@ -89,6 +95,7 @@ export function GrammarProvider({ children }) {
     setSelectedIdx(-1);
   };
 
+  {/* Function to apply a single suggestion */ }
   const handleApplyOne = (m) => {
     const replacement = m.replacements?.[0]?.value;
     if (!replacement) return;
@@ -98,6 +105,7 @@ export function GrammarProvider({ children }) {
     setSelectedIdx(-1);
   };
 
+  {/* Providing state and functions via context */ }
   return (
     <GrammarContext.Provider
       value={{
@@ -122,6 +130,7 @@ export function GrammarProvider({ children }) {
   );
 }
 
+{/* Custom hook to use GrammarContext */ }
 function useGrammar() {
   return useContext(GrammarContext);
 }

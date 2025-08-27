@@ -1,10 +1,13 @@
 import React from "react";
 import { useGrammar } from "../authcontext/GrammarContext";
-
+{
+  /* Suggestion component to display grammar suggestions */
+}
 const Suggestion = () => {
   const { text, normalized, handleApplyOne } = useGrammar();
   return (
     <div className="bg-white rounded-2xl shadow-sm p-4 border border-slate-200">
+      {/* Container for suggestions */}
       <h2 className="font-semibold">Suggestions ({normalized.length})</h2>
       {normalized.length === 0 ? (
         <p className="mt-2 text-slate-500 text-sm">No suggestions yet.</p>
@@ -31,6 +34,7 @@ const Suggestion = () => {
                     )}
                   </div>
                 </div>
+                {/* Button to apply individual suggestion */ }
                 <button
                   onClick={() => handleApplyOne(m)}
                   disabled={!m.replacements?.length}

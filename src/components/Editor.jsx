@@ -15,6 +15,7 @@ const Editor = () => {
     <div>
       <>
         <div className="bg-white rounded-2xl shadow-sm p-4 border border-slate-200">
+          {/* Container for text editor and check button */}
           <div className="flex items-center justify-between">
             <h2 className="font-semibold">Your Text</h2>
             <button
@@ -25,6 +26,7 @@ const Editor = () => {
               {loading ? "Checking…" : "Check Grammar"}
             </button>
           </div>
+          {/* Textarea for user input */ }
           <textarea
             value={text}
             onChange={(e) => setText(e.target.value)}

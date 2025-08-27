@@ -1,8 +1,9 @@
 import React from "react";
 import { useGrammar } from "../authcontext/GrammarContext";
-
+{/* Preview component to show text with highlights and auto-corrections */ }
 const Preview = () => {
   const { text, normalized, autoCorrected, handleApplyAll } = useGrammar();
+  {/* Function to build highlighted text */ }
   function buildHighlighted(text, matches, onClickMatch) {
     if (!matches.length) return [text];
     const parts = [];
@@ -26,6 +27,7 @@ const Preview = () => {
   }
   return (
     <>
+    {/* Container for preview and highlights */ }
       <div className="bg-white rounded-2xl shadow-sm p-4 border border-slate-200">
         <div className="flex items-center justify-between">
           <h2 className="font-semibold">Highlights & Preview</h2>
