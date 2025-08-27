@@ -3,7 +3,7 @@ import React from "react";
 const Footer = () => {
   return (
     <>
-      <footer className="text-center py-4 text-sm text-gray-600 absolute bottom-0 w-full bg-white">
+      <footer className="text-center py-4 text-sm text-gray-600 absolute md:bottom-0 w-full bg-white">
         {/* Footer component with attribution */}
         <p>
           Built using React and Tailwind & LanguageTool API | {""}
